@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Character Selection Revision</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; }
+        .card { background: white; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); min-width: 320px; }
+        select { padding: 10px; font-size: 16px; width: 220px; border-radius: 5px; border: 1px solid #ccc; cursor: pointer; }
+        .img-container { margin-top: 30px; height: 300px; display: flex; align-items: center; justify-content: center; }
+        #characterImage { max-height: 100%; max-width: 300px; border-radius: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>test</h2>
+        
+        <select id="characterSelect">
+            <option value="">-- Choose a Character --</option>
+        </select>
+
+        <div class="img-container">
+            <img id="characterImage" src="" alt="Character Profile">
+        </div>
+    </div>
+
+    <script>
+        const characterData = {
+            "Garfield": "https://picsum.photos/id/237/300/300", 
+            "Odie": "https://picsum.photos/id/1025/300/300",    
+            "Nermal": "https://picsum.photos/id/40/300/300",     
+            "Pooky": "https://picsum.photos/id/1084/300/300",    
+            "Jon": "https://picsum.photos/id/64/300/300"         
+        };
+
+        const selectBox = document.getElementById('characterSelect');
+        const displayImg = document.getElementById('characterImage');
+
+        Object.keys(characterData).forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            selectBox.appendChild(option);
+        });
+
+        selectBox.addEventListener('change', function() {
+            const selectedName = this.value;
+            
+            if (selectedName && characterData[selectedName]) {
+                displayImg.src = characterData[selectedName];
+                displayImg.style.display = 'block';
+            } else {
+                displayImg.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
